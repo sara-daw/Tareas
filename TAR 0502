@@ -5,7 +5,7 @@ CREATE TABLE colegios (
 	persona_contacto varchar(100) default('no procede') not null,
 	tfno_contacto char(13) default(0) default('no procede') not null
 );
-insert into colegios (idcolegio, nombre, persona_contacto, tfno_contacto) values('0','plazas disponibles','no procede','no procede');
+insert into colegios (idcolegio, nombre, persona_contacto, tfno_contacto) values('0','plazas disponibles');
 insert into colegios (idcolegio, nombre, persona_contacto, tfno_contacto) values('1','Zurbaran','Antonio Antunez','370497268');
 insert into colegios (idcolegio, nombre, persona_contacto, tfno_contacto) values('2','Maristas','Marta Martinez','298584389');
 CREATE TABLE colegios_actividades (
