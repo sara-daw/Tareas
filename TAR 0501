@@ -1,0 +1,57 @@
+--Consulta numero 1
+CREATE DATABASE Potencial_Digital_SQL;
+
+--Consulta numero 2
+USE Potencial_Digital_SQL;
+CREATE TABLE charlas (
+	idcharla smallint identity(1,1) not null primary key,
+	nombre varchar(255) not null unique,
+	info_adicional varchar(max) null,
+	puntacion_media decimal(4,2) null check(puntacion_media between 1 and 10) 
+);
+CREATE TABLE usuarios (
+	idusuario int identity(1,1) not null primary key,
+	nombre varchar(40) not null,
+	telefono char(13) not null unique 
+);
+CREATE TABLE asistencia (
+	idcharla smallint not null REFERENCES charlas (idcharla) on delete cascade on update cascade,
+	idusuario int not null REFERENCES usuarios (idusuario) on delete cascade on update cascade,
+	CONSTRAINT pk_compuesta primary key (idcharla,idusuario)
+);
+CREATE TABLE ponentes (
+	idponente tinyint identity(1,1) not null primary key,
+	nombre varchar(100) not null,
+	gasto_total smallmoney null check(gasto_total>=0)
+);
+CREATE TABLE charlas_ponentes (
+	idcharla smallint not null REFERENCES charlas (idcharla) on delete cascade on update cascade,
+	idponente tinyint not null REFERENCES ponentes (idponente) on delete cascade on update cascade,
+	CONSTRAINT pk_compuesta2 primary key (idcharla,idponente)
+);
+CREATE TABLE fechas ( 
+	fecha date not null primary key default('2025-10-02')
+); 
+CREATE TABLE fechas_charlas (
+	idcharla smallint not null REFERENCES charlas (idcharla) on delete cascade on update cascade,
+	fechahora smalldatetime not null
+);
+insert into charlas (nombre) values('seguridad informatica');
+insert into charlas (nombre) values('IA');
+insert into usuarios (nombre,telefono) values('paco','345356256');
+insert into usuarios (nombre,telefono) values('juan','312347567');
+insert into ponentes (nombre) values('marta');
+insert into ponentes (nombre) values('marco');
+insert into fechas (fecha) values('2025-10-03');
+insert into asistencia (idcharla,idusuario) values(1,1);
+insert into charlas_ponentes (idcharla,idponente) values(1,1);
+insert into fechas_charlas (idcharla,fechahora) values(1,'2025-10-03');
+
+--Consulta numero 3
+/* Pruebas FK */
+delete from charlas
+where idcharla=1; -- funcionara porque tenemos el on delete cascade y afectara a todos los campos conectados con FK
+
+update ponentes
+set idponente=3
+where idponente=1; -- funcionara porque tenemos el on update cascade y afectara a todos los campos conectados con FK
