@@ -2,8 +2,8 @@ USE Potencial_Digital_SQL;
 CREATE TABLE colegios (
 	idcolegio int not null primary key,
 	nombre varchar(255) not null,
-	persona_contacto varchar(100) not null,
-	tfno_contacto char(13) not null
+	persona_contacto varchar(100) default('no procede') not null,
+	tfno_contacto char(13) default(0) default('no procede') not null
 );
 insert into colegios (idcolegio, nombre, persona_contacto, tfno_contacto) values('0','plazas disponibles','no procede','no procede');
 insert into colegios (idcolegio, nombre, persona_contacto, tfno_contacto) values('1','Zurbaran','Antonio Antunez','370497268');
