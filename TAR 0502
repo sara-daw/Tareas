@@ -1,0 +1,21 @@
+USE Potencial_Digital_SQL;
+CREATE TABLE colegios (
+	idcolegio int not null primary key,
+	nombre varchar(255) not null,
+	persona_contacto varchar(100) not null,
+	tfno_contacto char(13) not null
+);
+insert into colegios (idcolegio, nombre, persona_contacto, tfno_contacto) values('0','plazas disponibles','no procede','no procede');
+insert into colegios (idcolegio, nombre, persona_contacto, tfno_contacto) values('1','Zurbaran','Antonio Antunez','370497268');
+insert into colegios (idcolegio, nombre, persona_contacto, tfno_contacto) values('2','Maristas','Marta Martinez','298584389');
+CREATE TABLE colegios_actividades (
+	idreserva int identity(1,1) not null primary key,
+	idcolegio int not null default(0) REFERENCES colegios (idcolegio) on delete cascade,
+	idcharla smallint null REFERENCES charlas (idcharla) on delete no action,
+	fecha date not null,
+	numero_asistentes smallint not null
+);
+insert into colegios_actividades (idcolegio, idcharla, fecha, numero_asistentes) values(1,1,'2025-10-02',100);
+insert into colegios_actividades (idcolegio, idcharla, fecha, numero_asistentes) values(1,2,'2025-10-03',30);
+insert into colegios_actividades (idcolegio, idcharla, fecha, numero_asistentes) values(2,1,'2025-10-04',70);
+insert into colegios_actividades (idcolegio, idcharla, fecha, numero_asistentes) values(2,2,'2025-10-05',60);
