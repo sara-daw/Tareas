@@ -5,9 +5,11 @@ CREATE TABLE colegios (
 	persona_contacto varchar(100) default('no procede') not null,
 	tfno_contacto char(13) default('no procede') not null
 );
+-- pruebas insertar filas con default
 insert into colegios (idcolegio, nombre) values('0','plazas disponibles');
 insert into colegios (idcolegio, nombre, persona_contacto, tfno_contacto) values('1','Zurbaran','Antonio Antunez','370497268');
 insert into colegios (idcolegio, nombre, persona_contacto, tfno_contacto) values('2','Maristas','Marta Martinez','298584389');
+insert into colegios (idcolegio, nombre, persona_contacto, tfno_contacto) values('3','Maristas',DEFAULT,DEFAULT);
 CREATE TABLE colegios_actividades (
 	idreserva int identity(1,1) not null primary key,
 	idcolegio int not null default(0) REFERENCES colegios (idcolegio) on delete cascade,
@@ -15,6 +17,8 @@ CREATE TABLE colegios_actividades (
 	fecha date not null,
 	numero_asistentes smallint not null
 );
+-- pruebas insertar filas con null
+insert into colegios_actividades (idcolegio, idcharla, fecha, numero_asistentes) values(3,NULL,'2025-10-02',100);
 insert into colegios_actividades (idcolegio, idcharla, fecha, numero_asistentes) values(1,1,'2025-10-02',100);
 insert into colegios_actividades (idcolegio, idcharla, fecha, numero_asistentes) values(1,2,'2025-10-03',30);
 insert into colegios_actividades (idcolegio, idcharla, fecha, numero_asistentes) values(2,1,'2025-10-04',70);
