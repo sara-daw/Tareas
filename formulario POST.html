@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ponentes Charlas</title>
+    <link rel="stylesheet" href="./css.css">
+</head>
+<body>
+<form action="mostrar_datos POST.php" method="post">
+    <h1>PONENTES CHARLAS</h1>
+    <label for="nombre">Nombre</label>
+    <input id="nombre" name="nombre" type="text">
+    <label for="correo">Correo</label>
+    <input id="correo" name="correo" type="email">
+    
+    <label for="tema">Tema de la charla</label>
+    <select id="tema" name="tema">
+        <option>Ciberseguridad</option>
+        <option>IA</option>
+        <option>Cloud Computing</option>
+        <option>Economía</option>
+    </select>
+    
+    <label for="info">Información</label>
+    <textarea id="info" name="info"></textarea>
+    
+    <input type="submit" value="Enviar" class="enviar">
+    <input type="reset" value="Limpiar" class="limpiar">
+</form>
+
+</body>
+</html>
